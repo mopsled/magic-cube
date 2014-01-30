@@ -2,6 +2,9 @@
   (:require [clojure.test :refer :all]
             [magic-cube.core :refer :all]))
 
+(def two-cube [2 2 2 2 2 2 2])
+(def four-cube [3 2 3 2 2 4 2 3 2 3 2 3 2 2 2 2 2 2 2 2 3 3 2 2 2 2 2 3 4 2 2 2 4 2 3 2 2 2 2 2 2 2 2 2 4 2])
+
 (deftest orthogonal-directions-test
   (testing "Orthogonal directions to +x are y and z directions"
     (is (= [:y-plus :y-minus :z-plus :z-minus] (orthogonal-directions :x-plus)))))
@@ -23,9 +26,9 @@
     (is (= nil (valid-cube? [2 2 2 2] [:y-plus :x-plus :y-plus :x-plus] 2)))))
 
 (deftest solve-very-simple-test
-  (testing "A one-piece puzzle should have one solution"
+  (testing "A one-piece puzzle should have a one-move solution"
     (is (= 1 (count (solve [2] 2))))))
 
 (deftest solve-simple-test
-  (testing "A two-peice puzzle should have four solutions"
-    (is (= 4 (count (solve [2 2] 2))))))
+  (testing "A two-peice cube should have a seven-move solution"
+    (is (= 7 (count (solve two-cube 2))))))

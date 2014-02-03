@@ -4,7 +4,7 @@
             [magic-cube.core :refer :all]))
 
 (def two-cube [2 2 2 2 2 2 2])
-(def three-cube [3 3 3 2 2 2 2 2 3 3 3 2 3 3 3 2 2])
+(def three-cube [3 2 2 3 2 3 2 2 3 3 2 2 2 3 3 3 3])
 (def four-cube [3 2 3 2 2 4 2 3 2 3 2 3 2 2 2 2 2 2 2 2 3 3 2 2 2 2 2 3 4 2 2 2 4 2 3 2 2 2 2 2 2 2 2 2 4 2])
 
 (deftest orthogonal-directions-test
@@ -21,11 +21,11 @@
 
 (deftest touched-coodinates-one-test
   (testing "Should return one touched coordinate when moving once"
-    (is (= '((0 1 0)) (touched-coordinates 0 0 0 :y-plus 1)))))
+    (is (= '([0 1 0]) (touched-coordinates 0 0 0 :y-plus 1)))))
 
 (deftest touched-coodinates-two-test
   (testing "Should return two touched coordinates when moving through two spaces"
-    (is (= '((1 2 1) (1 2 2)) (touched-coordinates 1 2 3 :z-minus 2)))))
+    (is (= '([1 2 2] [1 2 1]) (touched-coordinates 1 2 3 :z-minus 2)))))
 
 (deftest valid-cube-simple-test
   (testing "Simple arrangement should be valid"

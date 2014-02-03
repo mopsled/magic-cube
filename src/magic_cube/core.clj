@@ -14,12 +14,10 @@
       (:z-plus :z-minus) [x y (f z)])))
 
 (defn touched-coordinates [x y z move amount]
-  (let [move-map {:x-plus inc :x-minus dec :y-plus inc :y-minus dec :z-plus inc :z-minus dec}]
-    (loop [x x y y z z touched '() i 0]
-      (let [[x y z] (alter-coordinates x y z (move move-map) move)]
-        (if (= i amount)
-          touched
-          (recur x y z (conj touched (list x y z)) (inc i)))))))
+  (for [i (range 1 (inc amount))]
+    (case move
+      (:x-plus :y-plus :z-plus) (alter-coordinates x y z #(+ % i) move)
+      (:x-minus :y-minus :z-minus) (alter-coordinates x y z #(- % i) move))))
 
 (defn valid-cube? [cube moves size]
   (loop [x 0 y 0 z 0 cube cube moves moves touched {(list x y z) true}]

@@ -13,19 +13,19 @@
 
 (deftest alter-coodinates-plus-test
   (testing "Should alter +y coordinate"
-    (is (= [0 1 0] (alter-coordinates 0 0 0 inc :y-plus)))))
+    (is (= [0 1 0] (alter-coordinates '(0 0 0) inc :y-plus)))))
 
 (deftest alter-coodinates-minus-test
   (testing "Should alter -z coordinate"
-    (is (= [1 2 4] (alter-coordinates 1 2 5 dec :z-minus)))))
+    (is (= [1 2 4] (alter-coordinates '(1 2 5) dec :z-minus)))))
 
 (deftest touched-coodinates-one-test
   (testing "Should return one touched coordinate when moving once"
-    (is (= '([0 1 0]) (touched-coordinates 0 0 0 :y-plus 1)))))
+    (is (= '([0 1 0]) (touched-coordinates '(0 0 0) :y-plus 1)))))
 
 (deftest touched-coodinates-two-test
   (testing "Should return two touched coordinates when moving through two spaces"
-    (is (= '([1 2 2] [1 2 1]) (touched-coordinates 1 2 3 :z-minus 2)))))
+    (is (= '([1 2 2] [1 2 1]) (touched-coordinates '(1 2 3) :z-minus 2)))))
 
 (deftest valid-cube-simple-test
   (testing "Simple arrangement should be valid"

@@ -1,4 +1,3 @@
-
 (ns magic-cube.core-test
   (:require [clojure.test :refer :all]
             [magic-cube.core :refer :all]))
@@ -32,7 +31,7 @@
     (is (= true (valid-cube? [2 2 2 2] [:y-plus :x-plus :y-minus :z-plus] 2)))))
 
 (deftest valid-cube-out-of-bounds-test
-  (testing "Out-of-bounds arrangement should be valid"
+  (testing "Out-of-bounds arrangement should be invalid"
     (is (= nil (valid-cube? [2 2 2 2] [:y-plus :x-plus :y-plus :x-plus] 2)))))
 
 (deftest solve-very-simple-test

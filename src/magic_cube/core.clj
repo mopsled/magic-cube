@@ -7,11 +7,10 @@
     (:z-plus :z-minus) [:x-plus :x-minus :y-plus :y-minus]))
 
 (defn alter-coordinates [[x y z] f move]
-  (if (not (nil? move))
-    (case move
-      (:x-plus :x-minus) [(f x) y z]
-      (:y-plus :y-minus) [x (f y) z]
-      (:z-plus :z-minus) [x y (f z)])))
+  (case move
+    (:x-plus :x-minus) [(f x) y z]
+    (:y-plus :y-minus) [x (f y) z]
+    (:z-plus :z-minus) [x y (f z)]))
 
 (defn touched-coordinates [coor move amount]
   (for [i (range 1 (inc amount))]
